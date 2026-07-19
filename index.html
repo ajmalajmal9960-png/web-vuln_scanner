@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sentinel :: Web Vulnerability Scanner</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">&gt;_</span>
+      <span class="brand-name">SENTINEL</span>
+      <span class="brand-sub">web vulnerability scanner</span>
+    </div>
+    <div class="legal-pill">Authorized targets only</div>
+  </header>
+
+  <main class="layout">
+
+    <section class="scan-panel">
+      <h1>Scan a target</h1>
+      <p class="muted">
+        Point this at a test target you own or a training app such as
+        <code>OWASP WebGoat</code> or <code>OWASP NodeGoat</code> running locally.
+        The scanner crawls a few same-domain pages, tests every form and URL
+        parameter it finds, and grades findings by severity.
+      </p>
+
+      <form id="scan-form" class="scan-form">
+        <input
+          id="url-input"
+          type="text"
+          placeholder="http://localhost:8080/WebGoat"
+          autocomplete="off"
+          required
+        />
+        <button type="submit" id="scan-btn">Run scan</button>
+      </form>
+
+      <div class="secondary-actions">
+        <button type="button" id="demo-scan-btn" class="ghost-btn">
+          ▶ Try demo scan (offline preview)
+        </button>
+        <span class="muted small">
+          No target needed — runs the real detection engine against a built-in
+          simulated WebGoat/NodeGoat dataset so you can preview a full report instantly.
+        </span>
+      </div>
+
+      <div id="status" class="status hidden"></div>
+
+      <div id="crawl-info" class="crawl-info hidden"></div>
+
+      <div id="summary" class="summary-grid hidden">
+        <div class="summary-card critical">
+          <span class="count" id="count-critical">0</span>
+          <span class="label">Critical</span>
+        </div>
+        <div class="summary-card high">
+          <span class="count" id="count-high">0</span>
+          <span class="label">High</span>
+        </div>
+        <div class="summary-card medium">
+          <span class="count" id="count-medium">0</span>
+          <span class="label">Medium</span>
+        </div>
+        <div class="summary-card low">
+          <span class="count" id="count-low">0</span>
+          <span class="label">Low</span>
+        </div>
+        <div class="summary-card neutral">
+          <span class="count" id="count-forms">0</span>
+          <span class="label">Forms tested</span>
+        </div>
+      </div>
+
+      <div id="findings"></div>
+    </section>
+
+    <aside class="history-panel">
+      <h2>Scan history</h2>
+      <div id="history-list" class="history-list">
+        <p class="muted small">No scans yet.</p>
+      </div>
+    </aside>
+
+  </main>
+
+  <footer class="foot">
+    Built for educational / authorized security testing &middot;
+    OWASP Top 10 reference: owasp.org/www-project-top-ten
+  </footer>
+
+<script src="script.js"></script>
+</body>
+</html>
